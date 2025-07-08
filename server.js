@@ -1,7 +1,7 @@
 const express = require('express');
 const { chromium } = require('playwright');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
