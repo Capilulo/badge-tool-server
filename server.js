@@ -1,7 +1,13 @@
 const express = require('express');
 const { chromium } = require('playwright');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// Permitir solicitudes desde cualquier origen (CORS)
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.use(express.static('.'));
 
@@ -60,7 +66,7 @@ app.get('/count-badges', async (req, res) => {
   logs.push(`🎯 Plata:   ${plata}`);
   logs.push(`📊 Total:   ${platinum + gold + plata}`);
 
-  res.send({ platinum, gold, plata, logs });
+  res.json({ platinum, gold, plata, logs });
 });
 
 app.listen(PORT, () => {
