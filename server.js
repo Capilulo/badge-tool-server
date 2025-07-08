@@ -2,6 +2,9 @@ const express = require('express');
 const { chromium } = require('playwright');
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
 
 // Permitir solicitudes desde cualquier origen (CORS)
 app.use((req, res, next) => {
